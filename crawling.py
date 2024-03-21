@@ -23,18 +23,35 @@ def get_class_values_from_url(url):
         return []
 
 
-
-# URL을 명령행에서 입력받음
-url = sys.argv[1]
-
-# 함수 호출하여 클래스명에 해당하는 값들을 가져옴
-class_values = get_class_values_from_url(url)
-for value in class_values:
+def extract_number_from_value(value):
     match = re.search(r'(\d+)(?=개마다 부과)', value)
+    print('dddddddddddddddddddddd', match)
     if match:
-        number = match.group(1)
+        number = match.group(1) #매치된문자열중 첫번째그룹
         print(f"개마다 부과 앞 숫자: {number}")
+        return number
     else:
         print("일치하는 패턴이 없습니다.")
-# 가져온 값들 출력
-# print("result :: ", class_values)
+        return None
+
+url = sys.argv[1]
+class_values = get_class_values_from_url(url)
+result = None
+for value in class_values:
+    number = extract_number_from_value(value)
+    if number:
+        result = number
+        break
+
+
+
+# if __name__ == "__main__":
+#     # URL을 명령행에서 입력받음
+#     url = sys.argv[1]
+#
+#     # 함수 호출하여 클래스명에 해당하는 값들을 가져옴
+#     class_values = get_class_values_from_url(url)
+#     for value in class_values:
+#         number = extract_number_from_value(value)
+#         if number:
+#             break
