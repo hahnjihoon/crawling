@@ -25,7 +25,7 @@ def get_class_values_from_url(url):
 
 def extract_number_from_value(value):
     match = re.search(r'(\d+)(?=개마다 부과)', value)
-    print('dddddddddddddddddddddd', match)
+    print('dddddddddddddddddddddddd', match)
     if match:
         number = match.group(1) #매치된문자열중 첫번째그룹
         print(f"개마다 부과 앞 숫자: {number}")
